@@ -1,15 +1,27 @@
+* {
+	font-family: 'Cabin Sketch', cursive;
+}
+
 .game-title {
-	height:140px;
+	height:100px;
 	text-align: center;
-	font-family: ;
+	/*font-family: 'Monoton', cursive;*/
+	
 }
 
 .short {
-	height:145px;
+	height:80px;
+}
+
+.short2 {
+	height: 145px;
 }
 
 .tall {
-	height:400px;
+	height:330px;
+	background: url(https://www.pixelstalk.net/wp-content/uploads/2016/08/Free-Download-Chalkboard-Pictures.jpg);
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .btn {
@@ -19,6 +31,6 @@
 .alpha {
 	font-size: 20px;
 	font-style: bolder;
-	height:50px;
+	height:60px;
 	text-align: center;
 }
