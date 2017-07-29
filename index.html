@@ -38,9 +38,9 @@
 					  			<div class="form-group">
 								  <label for="Category">Select Category:</label>
 								  <select class="form-control" id="category">
-								    <option>NFL</option>
-								    <option>MLB</option>
-								    <option>NBA</option>
+								    <option>NFL Teams</option>
+								    <option>MLB Teams</option>
+								    <option>NBA Teams</option>
 								  </select>
 								</div>
 							</div>
@@ -141,6 +141,8 @@
 
 	<script type="text/javascript">
 
+		// Create Letter Selection 
+
 function createList(items, parent){
   var ul = document.createElement('ul');
   parent.appendChild(ul);
@@ -160,10 +162,19 @@ var list = document.getElementById('letters');
 
 createList(alphabet, list);
 
-	    
+	//  Select Category
 
-	    // create alphabet ul
+function selectCategory() {
 
+	
+		
+	
+}
+	// Animate man
+	  var animate = function () {
+	    var drawMe = lives ;
+	    drawArray[drawMe]();
+	  }
 
 	// Canvas Hangman Drawing 
 
@@ -171,10 +182,12 @@ createList(alphabet, list);
     var ctx = c.getContext("2d");
     
     // Ground
+    ground = function() {
     	ctx.beginPath();
     	ctx.moveTo(280,140);
     	ctx.lineTo(10,140);
     	ctx.stroke();
+    }
 
     // Vertical    	
     	ctx.beginPath();
@@ -232,6 +245,54 @@ createList(alphabet, list);
 		ctx.lineTo(70,105);
 		ctx.lineTo(70,120);
 		ctx.stroke();
+
+		drawArray = [leftLeg, rightLeg, leftArm, rightArm,  body,  head, rope, support, vertical, ground];
+
+   var nflTeams = [
+  ["Arizona Cardinals", "NFC West"],
+  ["Atlanta Falcons", "NFC South"],
+  ["Baltimore Ravens", "AFC North"],
+  ["Buffalo Bills", "AFC East"],
+  ["Carolina Panthers","NFC South"],
+  ["Chicago Bears", "NFC North"],
+  ["Cincinnati Bengals", "AFC North"],
+  ["Cleveland Browns", "AFC North"],
+  ["Dallas Cowboys", "NFC East"],
+  ["Denver Broncos", "AFC West"],
+  ["Detroit Lions", "NFC North"],
+  ["Green Bay Packers", "NFC North"],
+  ["Houston Texans", "AFC South"],
+  ["Indianapolis Colts", "AFC South"],
+  ["Jacksonville Jaguars", "AFC South"],
+  ["Kansas City Chiefs", "AFC West"],
+  ["Miami Dolphins", "AFC East"],
+  ["Minnesota Vikings", "NFC North"],
+  ["New England Patriots", "AFC East"],
+  ["New Orleans Saints","NFC South"],
+  ["New York Giants", "NFC East"],
+  ["New York Jets", "AFC East"],
+  ["Oakland Raiders", "AFC West"],
+  ["Philadelphia Eagles", "NFC East"],
+  ["Pittsburgh Steelers", "AFC North"],
+  ["San Diego Chargers", "AFC West"],
+  ["San Francisco Forty Niners", "NFC West"],
+  ["Seattle Seahawks", "NFC West"],
+  ["St. Louis Rams", "NFC West"],
+  ["Tampa Bay Buccaneers", "NFC South"],
+  ["Tennessee Titans", "AFC South"],
+  ["Washington Redskins", "NFC East"]
+];
+
+var answer =  nflTeams[Math.round(Math.random() * nflTeams.length)][0];
+		console.log(answer);
+			answer = answer.replace(/\s/g, "-");
+			splitAnswer= answer.split(""); 
+
+
+		 
+		hold.textContent = splitAnswer;
+console.log(nflTeams[0][1]); 
+
 
 
 

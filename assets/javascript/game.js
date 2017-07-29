@@ -23,23 +23,6 @@ window.onload = function () {
   var showClue = getElementById("clue");
 
 
-    // create alphabet ul
-    var buttons = function () {
-      myButtons = document.getElementById('buttons');
-      letters = document.createElement('ul');
-
-      for (var i = 0; i < alphabet.length; i++) {
-        letters.id = 'alphabet';
-        list = document.createElement('li');
-        list.id = 'letter';
-        list.innerHTML = alphabet[i];
-        check();
-        myButtons.appendChild(letters);
-        letters.appendChild(list);
-      }
-    }
-}
-
  function draw() {
 
   var c = document.getElementById("myCanvas");
@@ -49,7 +32,7 @@ window.onload = function () {
       ctx.stroke();
  }
 
- // Category: NFL Teams
+ // Category: NFL Teams [Team, Hint, Logo (Need to Add)]
 
  var nflTeams = [
   ["Arizona Cardinals", "NFC West"]

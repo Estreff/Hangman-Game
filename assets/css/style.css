@@ -108,14 +108,21 @@ body {
 }
 
 .hint {
-	padding-top: 10px;
+	padding-top: 5px;
+	font-size: 24px;
+	color: #325d88;
+}
+
+.box-lives {
+	color: #325d88;
+	font-size: 20px;
 }
 
 #myLives {
 	color: red;
 	font-style: bolder;
 	font-family: sans-serif;
-	font-size: 16px;
+	font-size: 24px;
 }
 
 .hangman {
