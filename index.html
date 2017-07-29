@@ -9,7 +9,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Monoton" rel="stylesheet">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  	<!-- <script type="text/javascript" src="assets/javascript/game.css"></script> -->
+  	<!-- <script type="text/javascript" src="assets/javascript/game.js"></script> -->
 </head>
 <body>
 	<div class="wrapper">
@@ -31,25 +31,24 @@
 
 					<!-- Category Selection -->
 						<div class="panel panel-primary">
-						  	<div class="panel-heading">
+						  	<div class="short3 panel-heading">
 						  		<h4>Category</h4>
 						  	</div>
 					  		<div class="short panel-body" >
-					  			<div class="dropdown">
-								    <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">Select Category
-								    <span class="caret"></span></button>
-								    <ul class="dropdown-menu">
-								      <li><a href="#">NFL</a></li>
-								      <li><a href=	"#">MLB</a></li>
-								      <li><a href="#">MLS</a></li>
-								    </ul>
+					  			<div class="form-group">
+								  <label for="Category">Select Category:</label>
+								  <select class="form-control" id="category">
+								    <option>NFL</option>
+								    <option>MLB</option>
+								    <option>NBA</option>
+								  </select>
 								</div>
 							</div>
 					  	</div>
 
 					<!-- Team Logo -->
 					  	<div class="panel panel-primary">
-					  		<div class="panel-heading">
+					  		<div class="short3 panel-heading">
 					  			<h4>Team Logo</h4>
 					  		</div>
 					  		<div class="short2 panel-body">
@@ -64,7 +63,11 @@
 					<div class="hangman col-md-6">
 						<div class="panel panel-primary">
 						  <div class="tall panel-body">	
-						  	<div class="hangman">Test</div>		 
+						  	<canvas id = "myCanvas"></canvas>	
+						  	<div id="hold">
+								Test<br>
+								Test
+							</div>					  			 
 						  </div>
 						</div>
 					</div>
@@ -72,33 +75,45 @@
 				<!-- Right Column -->
 					<div class=" col-md-3">
 
-					<!-- Hint -->
-						<div class="panel panel-primary">
-						  <div class="panel-heading">
-						  	<h4>Hint</h4>
-						  </div>
-						  <div class="short panel-body">
-						  	<button class="btn btn-info">Hint</button>
-						  </div>
-						</div>
-
 					<!-- Score -->
 						<div class="panel panel-primary">
-						  	<div class="panel-heading">
+						  	<div class="short3 panel-heading">
 						  		<h4>Score</h4>
 							</div>
-							<div class="short2 score short panel-body">
+							<div class="score panel-body">
 							  	<div class="row">
 								  	<div class="col-md-6">
-								  		<h5>Wins</h5>
+								  		<div class="scoreName"><h5>Wins</h5></div>
 								  		<div id="wins">3</div>
 								  	</div>
 								  	<div class="col-md-6">
-									  	<h5>Losses</h5>
+									  	<div class="scoreName"><h5>Losses</h5></div>
 									  	<div id="losses">2</div>
 								  	</div>							
 								</div>
 					  		</div>
+						</div>
+
+					<!-- Hint -->
+						<div class="panel panel-primary">
+						  <div class="short3 panel-heading">
+						  	<h4>Hint</h4>
+						  </div>
+						  <div class="box-hint short panel-body">
+						  	<button class="btn-hint btn btn-info"><h4>Hint</h4></button>
+							<div class = "hint" id="clue">Give me a hint</div>
+						  </div>
+						</div>
+
+					<!-- Lives -->
+						<div class="panel panel-primary">
+						  <div class="short3 panel-heading">
+						  	<h4>Lives</h4>
+						  </div>
+						  <div class="box-hint short panel-body">
+							<div class = "box-lives">You have <span id = "myLives">10</span>
+							<br> lives remaining!</div>
+						  </div>
 						</div>
 
 					</div>	
@@ -109,18 +124,126 @@
 				<div class="row">
 					<div class=" col-md-12">
 						<div class="panel panel-primary">
-						  <div class=" alpha panel-heading">
-						  	<h3>Use the alphabet below to guess the word!</h3>
-						  </div>
-						  <div class="short panel-body" id="buttons">
-						  	
-						  </div>
+							<div class=" alpha panel-heading">
+							  	<h3>Use the alphabet below to guess the word!</h3>
+							</div>
+							<div class="short2 panel-body" id="buttons">
+								
+							  	<div id="letters">
+							  		
+							  	</div>
+							</div>
 						</div>
 					</div>
 				</div>
 		</div>
 	</div>
 
+	<script type="text/javascript">
+
+function createList(items, parent){
+  var ul = document.createElement('ul');
+  parent.appendChild(ul);
+  items.forEach(function generateList(item) {
+    var li = document.createElement('li');
+    ul.appendChild(li);
+    if(Array.isArray(item)){
+      createList(item, li);
+    } else {
+	    li.innerHTML = item;
+    }
+  });
+}
+
+var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h','i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var list = document.getElementById('letters');
+
+createList(alphabet, list);
+
+	    
+
+	    // create alphabet ul
+
+
+	// Canvas Hangman Drawing 
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    
+    // Ground
+    	ctx.beginPath();
+    	ctx.moveTo(280,140);
+    	ctx.lineTo(10,140);
+    	ctx.stroke();
+
+    // Vertical    	
+    	ctx.beginPath();
+    	ctx.moveTo(25,140);
+		ctx.lineTo(25,15);
+		ctx.stroke();
+
+	// Horizontal   	
+    	ctx.beginPath();
+    	ctx.moveTo(25,15);
+		ctx.lineTo(80,15);
+		ctx.stroke();
+
+	// Rope   	
+    	ctx.beginPath();
+    	ctx.moveTo(80,15);
+		ctx.lineTo(80,30);
+		ctx.stroke();
+
+    // Head
+      	ctx.beginPath();
+      	ctx.arc(80,40,10,0,2*Math.PI);
+      	ctx.stroke();
+
+    // Body
+    	ctx.beginPath();
+    	ctx.moveTo(80,50);
+		ctx.lineTo(80,90);
+		ctx.stroke();
+
+	// Right Arm
+    	ctx.beginPath();
+    	ctx.moveTo(80,65);
+		ctx.lineTo(90,75);
+		ctx.lineTo(100,60);
+		ctx.stroke();
+
+	// Left Arm
+    	ctx.beginPath();
+    	ctx.moveTo(80,65);
+		ctx.lineTo(70,75);
+		ctx.lineTo(60,60);
+		ctx.stroke();
+
+	// Right Leg
+    	ctx.beginPath();
+    	ctx.moveTo(80,90);
+		ctx.lineTo(90,105);
+		ctx.lineTo(90,120);
+		ctx.stroke();
+
+	// Left Leg
+    	ctx.beginPath();
+    	ctx.moveTo(80,90);
+		ctx.lineTo(70,105);
+		ctx.lineTo(70,120);
+		ctx.stroke();
+
+
+
+
+
+
+
+
+
+
+
+	</script>
 
 </body>
 </html>
