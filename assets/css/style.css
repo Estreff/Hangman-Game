@@ -159,6 +159,15 @@ body {
       color:white;
     }
 
+ .inactive li{
+ 	border: 2px solid red;
+	background:red;
+}
+
+ .located li {
+	background: green;
+}
+
 #myCanvas {
 	background-color: white;
 	width:100%;
