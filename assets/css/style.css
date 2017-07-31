@@ -2,10 +2,11 @@
 	font-family: 'Cabin Sketch', cursive;
 }
 
-$base-color:$green ;
 
 body {
 	background-color: #E1CFC7;	
+	width:100%;
+	height: 90%;
 }
 .wrapper {
 	margin:20px;

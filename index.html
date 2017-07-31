@@ -36,13 +36,13 @@
 						  	</div>
 					  		<div class="short panel-body" >
 					  			<div class="form-group">
-								  <!-- <label for="Category">Select Category:</label>
+								  <label for="Category">Select Category:</label>
 								  <select class="form-control" id="category">
 								    <option>NFL Teams</option>
-								    <option>MLB Teams</option>
-								    <option>NBA Teams</option>
-								  </select> -->
-								  NFL Teams
+								    <!-- <option>MLB Teams</option>
+								    <option>NBA Teams</option> -->
+								  </select>
+								  
 								</div>
 							</div>
 					  	</div>
@@ -66,8 +66,7 @@
 						  <div class="tall panel-body">	
 						  	<canvas id = "myCanvas"></canvas>	
 						  	<div id="hold">
-								Test<br>
-								Test
+								
 							</div>					  			 
 						  </div>
 						</div>
@@ -160,6 +159,7 @@ function createList(items, parent){
 
 var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h','i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var list = document.getElementById('letters');
+var lives = 10;
 var letterGuess = [];
 var splitAnswer = [];
 var underScore = [];
@@ -183,33 +183,30 @@ buttons.addEventListener('click', function(event) {
 
 				if (letterGuess[letterGuess.length-1] === splitAnswer[i]) {
 
-					// trueFalse = true;
+					trueFalse = true;
 
-					// indexes.push(i);
+					indexes.push(i);
 		
 					var underScoreSplit = underScore.split("");
 					
-						for (var j = 0; j < underScoreSplit.length; j++) {
-							underScoreSplit[j] = splitAnswer[j];
-							console.log(underScoreSplit[j]);
-						
+						for (var j = 0; j < indexes.length; j++) {
+							underScoreSplit[indexes[j]] = letterGuess[letterGuess.length-1];
+
+							indexes = [];
+
+							underScore = underScoreSplit.join("");
+							console.log(underScore);
 						}
-						
-						underScore = underScoreSplit.join("");
-						console.log(underScore);
 
 
-					
-					// console.log(underScore);
-					// console.log(underScore[i]);
-					// console.log(splitAnswer[i]);
-					// underScore.replace(underScore[i],splitAnswer[i]);
-					// underScore.join("");
-					// console.log(underScore);
-
-					// hold.textContent = revisedAnswer;
+					hold.textContent = underScore;
 				} 
-			}
+			} //else {
+
+
+
+			// 	myLives.textContent = lives;
+			// }
 
  
 		// Add letter to var guessedLetters 
