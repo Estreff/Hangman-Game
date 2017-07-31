@@ -36,12 +36,13 @@
 						  	</div>
 					  		<div class="short panel-body" >
 					  			<div class="form-group">
-								  <label for="Category">Select Category:</label>
+								  <!-- <label for="Category">Select Category:</label>
 								  <select class="form-control" id="category">
 								    <option>NFL Teams</option>
 								    <option>MLB Teams</option>
 								    <option>NBA Teams</option>
-								  </select>
+								  </select> -->
+								  NFL Teams
 								</div>
 							</div>
 					  	</div>
@@ -139,7 +140,7 @@
 		</div>
 	</div>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
 		// Create Letter Selection 
 
@@ -159,35 +160,113 @@ function createList(items, parent){
 
 var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h','i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var list = document.getElementById('letters');
+var letterGuess = [];
+var splitAnswer = [];
+var underScore = [];
+var revisedAnswer = [];
+var indexes = [];
+trueFalse = false;
+
+// Select by clicking letter button to make guess
+
+buttons.addEventListener('click', function(event) {
+
+		guess = event.target.innerHTML;
+		console.log(guess);
+
+		letterGuess.push(guess);
+		console.log(letterGuess[letterGuess.length-1]); 
+
+		
+						
+			for (var i = 0; i < splitAnswer.length; i++) {
+
+				if (letterGuess[letterGuess.length-1] === splitAnswer[i]) {
+
+					// trueFalse = true;
+
+					// indexes.push(i);
+		
+					var underScoreSplit = underScore.split("");
+					
+						for (var j = 0; j < underScoreSplit.length; j++) {
+							underScoreSplit[j] = splitAnswer[j];
+							console.log(underScoreSplit[j]);
+						
+						}
+						
+						underScore = underScoreSplit.join("");
+						console.log(underScore);
+
+
+					
+					// console.log(underScore);
+					// console.log(underScore[i]);
+					// console.log(splitAnswer[i]);
+					// underScore.replace(underScore[i],splitAnswer[i]);
+					// underScore.join("");
+					// console.log(underScore);
+
+					// hold.textContent = revisedAnswer;
+				} 
+			}
+
+ 
+		// Add letter to var guessedLetters 
+		// compare letter clicked to splitAnswer to see if it exists in Answer
+		// if (letter exist is answer) {
+			//change underscore to letter guessed
+			// make inactive so it can't be selected again
+		// }
+		// } else {
+			// add letter to var guessedLetters
+			// make inactive so it can't be selected again
+			// subtract 1 from myLives
+			// draw part of hangman
+		// }
+
+});
 
 createList(alphabet, list);
 
 	//  Select Category
 
-function selectCategory() {
+// function selectCategory() {
 
 	
 		
 	
-}
-	// Animate man
-	  var animate = function () {
-	    var drawMe = lives ;
-	    drawArray[drawMe]();
-	  }
+// }
+// 	// Animate man
+// 	  var animate = function () {
+// 	    var drawMe = lives ;
+// 	    drawArray[drawMe]();
+// 	  }
 
 	// Canvas Hangman Drawing 
+		var c = document.getElementById("myCanvas");
+    	var ctx = c.getContext("2d"); 
 
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
     
     // Ground
-    ground = function() {
+    
     	ctx.beginPath();
     	ctx.moveTo(280,140);
     	ctx.lineTo(10,140);
     	ctx.stroke();
+    
+    function draw($pathFromx, $pathFromy, $pathTox, $pathToy) {
+    	var c = document.getElementById("myCanvas");
+    	var ctx = c.getContext("2d");    	
+			ctx.beginPath();
+    		ctx.moveTo($pathFromx, $pathFromy);
+    		ctx.lineTo($pathTox, $pathToy);
+    		ctx.stroke();
     }
+
+    	ground = function() {
+    		draw(280,140,10,140);
+		}
 
     // Vertical    	
     	ctx.beginPath();
@@ -246,7 +325,7 @@ function selectCategory() {
 		ctx.lineTo(70,120);
 		ctx.stroke();
 
-		drawArray = [leftLeg, rightLeg, leftArm, rightArm,  body,  head, rope, support, vertical, ground];
+		// drawArray = [leftLeg, rightLeg, leftArm, rightArm,  body,  head, rope, support, vertical, ground];
 
    var nflTeams = [
   ["Arizona Cardinals", "NFC West"],
@@ -269,29 +348,34 @@ function selectCategory() {
   ["Minnesota Vikings", "NFC North"],
   ["New England Patriots", "AFC East"],
   ["New Orleans Saints","NFC South"],
-  ["New York Giants", "NFC East"],
+  ["New York Giants", "NFC East",],
   ["New York Jets", "AFC East"],
   ["Oakland Raiders", "AFC West"],
   ["Philadelphia Eagles", "NFC East"],
   ["Pittsburgh Steelers", "AFC North"],
-  ["San Diego Chargers", "AFC West"],
+  ["Los Angeles Chargers", "AFC West"],
   ["San Francisco Forty Niners", "NFC West"],
   ["Seattle Seahawks", "NFC West"],
-  ["St. Louis Rams", "NFC West"],
+  ["Los Angeles Rams", "NFC West"],
   ["Tampa Bay Buccaneers", "NFC South"],
   ["Tennessee Titans", "AFC South"],
   ["Washington Redskins", "NFC East"]
 ];
 
+
+
+
 var answer =  nflTeams[Math.round(Math.random() * nflTeams.length)][0];
-		console.log(answer);
-			answer = answer.replace(/\s/g, "-");
-			splitAnswer= answer.split(""); 
+			console.log(answer);
 
+			underScore = answer.replace(/[a-zA-Z]/g, "_");
+			console.log(underScore);
 
-		 
-		hold.textContent = splitAnswer;
-console.log(nflTeams[0][1]); 
+			splitAnswer = answer.toLowerCase().split("");
+			console.log(splitAnswer);
+
+			hold.textContent =underScore;
+			console.log(nflTeams[0][1]); 
 
 
 
