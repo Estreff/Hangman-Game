@@ -71,6 +71,8 @@ letters.addEventListener('click', function(event) {
         
         }   
       }
+
+
       
       console.log(trueFalse);
 
@@ -80,13 +82,37 @@ letters.addEventListener('click', function(event) {
         // letterClass.add('inactive');
         myLives.textContent = lives; 
         hangman();
+        
 
       } else {
         // letterClass = guess.setAttribute('class', 'test');
         trueFalse = false;
+      
         
       }
+
+      setTimeout(function() {
+        winLoss ();
+      }, 600);
+
 });
+
+function winLoss() {
+  if (answer.toLowerCase() === underScore.toLowerCase()) {
+    document.getElementById('popup').style.visibility = "visible";
+    document.getElementById('winLossComment').textContent = "Congratulations, you sure know your Sports Teams!!"; 
+    wins ++;
+    console.log(wins);
+    win.textContent = wins;
+  } else if (lives === 0) {
+    document.getElementById('popup').style.visibility = "visible";
+    document.getElementById('winLossComment').innerHTML = "Study up and play again!!<br />" + "Answer:  " + answer;
+    losses ++;
+    console.log(losses);
+    loss.textContent = losses;
+    
+  }
+}
 
 //  generate Hint associated with Answer selected
 
@@ -97,13 +123,19 @@ btnHint.addEventListener('click', function(event) {
     clue.textContent = category[teamsGenerated[teamsGenerated.length-1]][1];
     if(lives > 0) {
       lives--;
+      btnHint.setAttribute("class", "disabled");
     }
     myLives.textContent = lives; 
 
     
     hangman();
+
+    setTimeout(function() {
+        winLoss ();
+      }, 600);
     
 });
+
 
 //  Hangman function to draw in Canvas
 
@@ -214,8 +246,8 @@ function hangman () {
 
 createList(alphabet, list);
 document.getElementById("myLives").innerHTML = lives;  
-document.getElementById("wins").innerHTML = wins;  
-document.getElementById("losses").innerHTML = losses;  
+document.getElementById("win").innerHTML = wins;  
+document.getElementById("loss").innerHTML = losses;  
 
    var nflTeams = [
   ["Arizona  Cardinals", "NFC West"],
@@ -272,8 +304,34 @@ var answer =  category[teamsGenerated[teamsGenerated.length-1]][0];
       console.log(splitAnswer);
 
       hold.textContent =underScore;
+
+
   
 });
+
+function newGame() {
+lives =10;  
+mylives.textContent = lives;
+buttons.setAttribute("class", "");
+// var removeDisabled = document.querySelectorAll(".disabled");
+// removeDisabled.removeClass();
+
+
+document.getElementById('popup').style.visibility = "hidden";
+
+}
+
+// function resetGame() {
+
+
+// myLives.textContent = 0;  
+// win.textContent = 0;  
+// loss.textContent = 0;  
+
+// document.getElementById('popup').style.visibility = "hidden";
+
+
+// }
 
 
 

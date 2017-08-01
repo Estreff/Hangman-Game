@@ -7,6 +7,7 @@ body {
 	background-color: #140340;	
 	width:100%;
 	height: 90%;
+	position: relative;
 }
 .wrapper {
 	margin:20px;
@@ -167,9 +168,6 @@ body {
 
 }
 
- .located {
-	background: green;
-}
 
 #myCanvas {
 	background-color: white;
@@ -181,7 +179,6 @@ body {
 }
 
 #hold {
-	color: #325d88;
 	color: white;
 	font-size: 36px;
 	text-align: center;
@@ -194,3 +191,57 @@ body {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
+
+
+#popup {
+	border: 10px ridge #1b8dbb;
+	border-radius: 5px;
+	background-color: white;
+	color: #1b8dbb#;
+	cursor: pointer;
+	height: 300px;
+	width: 600px;
+    position: absolute;
+    bottom: 600px;
+    left:33%;   
+    font-size: 36px;
+    text-align: center; 
+    visibility:hidden;
+    z-index: 10;
+}
+
+#winLossComment {
+	margin: 20px;
+}
+
+
+#reset {
+	font-size: 24px;
+	height:50px;
+	width: 150px;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+#newGame {
+	font-size: 24px;
+	height:50px;
+	width: 150px;
+	position: absolute;
+	bottom: 10px;
+	right: 170px;
+}
+
+.footer {
+	position:relative;
+	font-size: 24px;
+	text-align: center;
+	background-color: #325d88;
+	color: white;
+	height: 100px;
+	line-height: 100px;
+	bottom:0px;
+	left:0px;
+}
+
