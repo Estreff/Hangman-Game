@@ -31,10 +31,11 @@ var losses = 0;
 var teamsGenerated = [];
 
 
-buttons.addEventListener('click', function(event) {
+letters.addEventListener('click', function(event) {
 
     guess = event.target.innerHTML;
     var letterClass = event.srcElement;
+    letterClass.setAttribute("class", "disabled");
     console.log(letterClass);
 
 
@@ -87,6 +88,8 @@ buttons.addEventListener('click', function(event) {
       }
 });
 
+//  generate Hint associated with Answer selected
+
 btnHint.addEventListener('click', function(event) {
 
     clues = event.target.innerHTML;
@@ -102,6 +105,7 @@ btnHint.addEventListener('click', function(event) {
     
 });
 
+//  Hangman function to draw in Canvas
 
 function hangman () {
 
@@ -256,7 +260,7 @@ teamsGenerated.push(randomNumber);
 
 
 
-var answer =  category[Math.round(Math.random() * category.length)][0];
+var answer =  category[teamsGenerated[teamsGenerated.length-1]][0];
       console.log(answer);
 
 
