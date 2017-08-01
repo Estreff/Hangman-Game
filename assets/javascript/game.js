@@ -28,12 +28,17 @@ var indexes = [];
 trueFalse = false;
 var wins = 0;
 var losses = 0;
+var teamsGenerated = [];
 
 
 buttons.addEventListener('click', function(event) {
 
     guess = event.target.innerHTML;
-    
+    var letterClass = event.srcElement;
+    console.log(letterClass);
+
+
+
     console.log(guess);
 
     letterGuess.push(guess);
@@ -45,7 +50,7 @@ buttons.addEventListener('click', function(event) {
 
         if (letterGuess[letterGuess.length-1] === splitAnswer[i]) {
 
-          guess.className += "located";
+
 
           trueFalse = true;
 
@@ -61,19 +66,145 @@ buttons.addEventListener('click', function(event) {
               underScore = underScoreSplit.join("");
             }
 
-
           hold.textContent = underScore;
         
-        } // else {}
+        }   
       }
       
-    
+      console.log(trueFalse);
 
+      if (trueFalse === false) {      
+          lives--;
+        console.log(lives);
+        // letterClass.add('inactive');
+        myLives.textContent = lives; 
+        hangman();
+
+      } else {
+        // letterClass = guess.setAttribute('class', 'test');
+        trueFalse = false;
+        
+      }
+});
+
+btnHint.addEventListener('click', function(event) {
+
+    clues = event.target.innerHTML;
+    document.getElementById('clue').style.color = "red";
+    clue.textContent = category[teamsGenerated[teamsGenerated.length-1]][1];
+    if(lives > 0) {
+      lives--;
+    }
+    myLives.textContent = lives; 
+
+    
+    hangman();
+    
 });
 
 
+function hangman () {
+
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+
+// Ground
+  if (lives === 9) {   
+          
+        ctx.beginPath();
+        ctx.moveTo(280, 140);
+        ctx.lineTo(10, 140);
+        ctx.stroke();
+      }
+
+// Vertical
+  if (lives === 8) {   
+        
+      ctx.beginPath();
+      ctx.moveTo(25,140);
+      ctx.lineTo(25,15);
+      ctx.stroke();
+    }
+
+// Horizontal 
+  if (lives === 7) {   
+        
+      ctx.beginPath();
+      ctx.moveTo(25,15);
+      ctx.lineTo(80,15);
+      ctx.stroke();
+    }
+
+// Rope
+  if (lives === 6) {   
+      
+      ctx.beginPath();
+      ctx.moveTo(80,15);
+      ctx.lineTo(80,30);
+      ctx.stroke();
+  }
+// Head
+  if (lives === 5) {   
+      
+      ctx.beginPath();
+      ctx.arc(80,40,10,0,2*Math.PI);
+      ctx.stroke();
+  }
+
+// Body
+  if (lives === 4) {   
+      
+      ctx.beginPath();
+      ctx.moveTo(80,50);
+      ctx.lineTo(80,90);
+      ctx.stroke();
+  }
+
+// Right Arm
+  if (lives === 3) {   
+      
+      ctx.beginPath();
+      ctx.moveTo(80,65);
+      ctx.lineTo(90,75);
+      ctx.lineTo(100,60);
+      ctx.stroke();
+  }
+
+// Left Arm
+  if (lives === 2) {   
+      
+      ctx.beginPath();
+      ctx.moveTo(80,65);
+      ctx.lineTo(70,75);
+      ctx.lineTo(60,60);
+      ctx.stroke();
+  }
+
+// Right Leg
+  if (lives === 1) {   
+      
+      ctx.beginPath();
+      ctx.moveTo(80,90);
+      ctx.lineTo(90,105);
+      ctx.lineTo(90,120);
+      ctx.stroke();
+  }
+
+//  Left leg
+  if (lives === 0) {   
+      
+      ctx.beginPath();
+      ctx.moveTo(80,90);
+      ctx.lineTo(70,105);
+      ctx.lineTo(70,120);
+      ctx.stroke();
+  }
 
 
+
+
+
+}
 
 
 
@@ -119,9 +250,16 @@ document.getElementById("losses").innerHTML = losses;
 
 
 
+var category = nflTeams;
+randomNumber = Math.round(Math.random() * category.length);
+teamsGenerated.push(randomNumber);
 
-var answer =  nflTeams[Math.round(Math.random() * nflTeams.length)][0];
+
+
+var answer =  category[Math.round(Math.random() * category.length)][0];
       console.log(answer);
+
+
 
       underScore = answer.replace(/[a-zA-Z]/g, "_");
       console.log(underScore);
@@ -130,7 +268,8 @@ var answer =  nflTeams[Math.round(Math.random() * nflTeams.length)][0];
       console.log(splitAnswer);
 
       hold.textContent =underScore;
-      console.log(nflTeams[0][1]); 
-
   
 });
+
+
+

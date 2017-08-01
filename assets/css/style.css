@@ -159,12 +159,15 @@ body {
       color:white;
     }
 
- .inactive li{
- 	border: 2px solid red;
-	background:red;
+ .disabled {
+ 	opacity: .65;
+ 	border: 2px solid red !important;
+	background:red !important;
+	cursor: not-allowed;
+
 }
 
- .located li {
+ .located {
 	background: green;
 }
 
