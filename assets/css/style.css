@@ -15,22 +15,22 @@ body {
 }
 
 .game-title {
-	/*height:100px;*/
+
 	text-align: center;
 		
 }
 
 .short {
-	/*height:90px;*/
+
 	margin: 0px;
 }
 
 .short2 {
-	/*height: 230px;*/
+
 }
 
 .short3 {
-	/*height: 40px;*/
+	
 }
 
 /*Panel Header*/
@@ -40,9 +40,8 @@ body {
 
 .tall {
 	background-color: #325d88;
-	/*height:420px;*/
 	position:relative;
-	z-index: 2;
+
 	
 	/*background: url(https://www.pixelstalk.net/wp-content/uploads/2016/08/Free-Download-Chalkboard-Pictures.jpg);
 	background-size: 100% 100%;
@@ -76,32 +75,40 @@ body {
 .score {
 	text-align: center;
 	font-style: bold;
-	height: 80px;
-	font-size:28px;
+	/*height: 80px;*/
+	font-size:32px;
 }
 
-#wins {
-	text-align: center;
-	color: #325d88;	
+.winColumn {
+	font-size: 28px;
+	
+	color: #325d88;
 }
-#losses	{
-	text-align: center;
-	color: #325d88;	
+
+.lossColumn {
+	font-size: 28px;
+	
+	color: #325d88;
+}
+
+#win {
+	font-size: 44px;
+}
+#loss	{
+	font-size: 44px;	
 }
 
 .score h5 {
-	margin-left: 20px;
+	
 	text-align: center;
-	color: #325d88;
-	width: 70px;
-	border-bottom: 2px solid #325d88;
-	margin: 0px;
-	font-size: 24px;
+	color: #325d88;	
+	border-bottom: 2px solid #325d88;	
+	font-size: 32px;
 }
-
+/*
 .scoreName {
 	margin-left: 15px;
-}
+}*/
 
 .drawing {
 	color: white;
@@ -142,7 +149,7 @@ body {
   margin: 0 10px 10px 0;
   list-style:none;
   width:70px;
-  height:70px;
+  height:120px;
   padding-top:10px;
   background:#1b8dbb;
   color:white;
@@ -151,8 +158,8 @@ body {
   border-radius: 5px;
   text-align: center;
   font-style: bold;
-  line-height: 50px;
-  font-size: 28px;
+  line-height: 70px;
+  font-size: 32px;
     }
 #letters li:hover{
       background:#325d88;
@@ -167,6 +174,7 @@ body {
 	display: none;
 
 }
+
 
 
 #myCanvas {
