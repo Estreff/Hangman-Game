@@ -106,8 +106,9 @@ function winLoss() {
   if (answer.toLowerCase() === underScore.toLowerCase()) {
     document.getElementById('popup').style.visibility = "visible";
     document.getElementById('winLossComment').textContent = "Congratulations, you sure know your Sports Teams!!"; 
-    changeImage(category[teamsGenerated[teamsGenerated.length-1]][2]);
-    console.log(category[teamsGenerated[teamsGenerated.length-1]][2]);
+    changeImage();
+    btnHint.setAttribute("class", "disabled");
+    letters.setAttribute("class", "disabled");
     wins ++;
     console.log(wins);
     win.textContent = wins;
@@ -117,6 +118,8 @@ function winLoss() {
     losses ++;
     console.log(losses);
     loss.textContent = losses;
+    btnHint.setAttribute("class", "disabled");
+    letters.setAttribute("class", "disabled");
     
   }
 }
@@ -300,22 +303,16 @@ console.log(randomNumber);
 // Pusshes random number to an array to store
 teamsGenerated.push(randomNumber);
 
- function changeImage(newImage) {
- //    // searchPic = new Image();
- //    // searchPic.src = category[teamsGenerated[teamsGenerated.length-1]][2];
- //    // document.getElementById('logo').src = searchPic.src;
- //    // logo.src = searchPic.src;
-
- //    var image = document.getElementById('logo');
- //    image.src = "category[teamsGenerated[teamsGenerated.length-1]][2]";
-
- //    console.log(image.src);
- 
-
- var img = document.getElementById('logo');
-    img.src = 'newImage';
+ function changeImage() {
+    var searchPic = category[teamsGenerated[teamsGenerated.length-1]][2];
+    console.log(searchPic);
+    logo.setAttribute('src', searchPic);
 }
 
+function resetImage() {
+  var setImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiPL-bxWonw1J8XuGNCu3AtG4zfDffi2owmFQ4BOGN86swxiVh";
+  logo.setAttribute('src', setImage);
+}
 // Selects a team by the random number generated above
 
 
@@ -331,25 +328,21 @@ var answer =  category[teamsGenerated[teamsGenerated.length-1]][0];
       splitAnswer = answer.toLowerCase().split("");
 
       hold.textContent = underScore;
-      
 
+  // Create a new game but keep score 
       
+newGame.addEventListener('click', function(event){
 
+    document.getElementById('popup').style.visibility = "hidden"; 
+    resetImage();
+    lives = 10;
+    document.getElementById("myLives").innerHTML = lives;  
+    btnHint.removeAttribute("class", "disabled");
+    btnHint.setAttribute("class", "btn-info");
+    letters.removeAttribute("class", "disabled");
+    hold.textContent = underScore;
 
 });
-
-// function newGame() {
-// lives =10;  
-// mylives.textContent = lives;
-// buttons.setAttribute("class", "");
-// // var removeDisabled = document.querySelectorAll(".disabled");
-// // removeDisabled.removeClass();
-
-
-// document.getElementById('popup').style.visibility = "hidden";
-
-// }
-
 
 // function resetGame() {
 
@@ -362,6 +355,12 @@ var answer =  category[teamsGenerated[teamsGenerated.length-1]][0];
 
 
 // }
+      
+
+
+});
+
+
 
 
 
