@@ -31,6 +31,8 @@ var losses = 0;
 var teamsGenerated = [];
 
 
+// On click of one of the letters it will select
+
 letters.addEventListener('click', function(event) {
 
     guess = event.target.innerHTML;
@@ -41,6 +43,7 @@ letters.addEventListener('click', function(event) {
 
 
     console.log(guess);
+
 
     letterGuess.push(guess);
     console.log(letterGuess[letterGuess.length-1]); 
@@ -97,11 +100,14 @@ letters.addEventListener('click', function(event) {
 
 });
 
+// Figuring out if they have won the game!!
+
 function winLoss() {
   if (answer.toLowerCase() === underScore.toLowerCase()) {
     document.getElementById('popup').style.visibility = "visible";
     document.getElementById('winLossComment').textContent = "Congratulations, you sure know your Sports Teams!!"; 
-    img
+    changeImage(category[teamsGenerated[teamsGenerated.length-1]][2]);
+    console.log(category[teamsGenerated[teamsGenerated.length-1]][2]);
     wins ++;
     console.log(wins);
     win.textContent = wins;
@@ -236,19 +242,16 @@ function hangman () {
       ctx.lineTo(70,120);
       ctx.stroke();
   }
-
-
-
-
-
 }
 
-
+// Builds the page for the first time
 
 createList(alphabet, list);
 document.getElementById("myLives").innerHTML = lives;  
 document.getElementById("win").innerHTML = wins;  
 document.getElementById("loss").innerHTML = losses;  
+
+// Category of Teams by Sport
 
    var nflTeams = [
   ["Arizona  Cardinals", "NFC West", "http://www.nflfootballstadiums.com/images/Arizona-Cardinals-Logo.gif"],
@@ -285,24 +288,35 @@ document.getElementById("loss").innerHTML = losses;
   ["Washington  Redskins", "NFC East", "http://prod.static.redskins.clubs.nfl.com/nfl-assets/img/gbl-ico-team/WAS/logos/home/large.png"]
 ];
 
-
+// Setting category to NFL, until I have time to create other categories
 
 var category = nflTeams;
-randomNumber = Math.round(Math.random() * category.length);
+
+// creates a random number based on length of selected category
+
+randomNumber = Math.floor(Math.random() * category.length);
+console.log(randomNumber);
+
+// Pusshes random number to an array to store
 teamsGenerated.push(randomNumber);
 
- // function changeImage() {
- //    searchPic = new Image();
- //    searchPic.src = category[teamsGenerated[teamsGenerated.length-1]][2];
- //    document.getElementById('logo').src = searchPic.src;
- //    logo.changeImage = searchPic.src;
+ function changeImage(newImage) {
+ //    // searchPic = new Image();
+ //    // searchPic.src = category[teamsGenerated[teamsGenerated.length-1]][2];
+ //    // document.getElementById('logo').src = searchPic.src;
+ //    // logo.src = searchPic.src;
 
- //    console.log(searchPic.src);
- //  }
+ //    var image = document.getElementById('logo');
+ //    image.src = "category[teamsGenerated[teamsGenerated.length-1]][2]";
+
+ //    console.log(image.src);
+ 
 
  var img = document.getElementById('logo');
-    img.src = category[teamsGenerated[teamsGenerated.length-1]][2];
+    img.src = 'newImage';
+}
 
+// Selects a team by the random number generated above
 
 
 var answer =  category[teamsGenerated[teamsGenerated.length-1]][0];
@@ -313,26 +327,28 @@ var answer =  category[teamsGenerated[teamsGenerated.length-1]][0];
       underScore = answer.replace(/[a-zA-Z]/g, "_");
       console.log(underScore);
 
+
       splitAnswer = answer.toLowerCase().split("");
-      console.log(splitAnswer);
 
-      hold.textContext =underScore;
+      hold.textContent = underScore;
+      
+
+      
 
 
-  
 });
 
-function newGame() {
-lives =10;  
-mylives.textContent = lives;
-buttons.setAttribute("class", "");
-// var removeDisabled = document.querySelectorAll(".disabled");
-// removeDisabled.removeClass();
+// function newGame() {
+// lives =10;  
+// mylives.textContent = lives;
+// buttons.setAttribute("class", "");
+// // var removeDisabled = document.querySelectorAll(".disabled");
+// // removeDisabled.removeClass();
 
 
-document.getElementById('popup').style.visibility = "hidden";
+// document.getElementById('popup').style.visibility = "hidden";
 
-}
+// }
 
 
 // function resetGame() {

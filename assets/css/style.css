@@ -41,6 +41,7 @@ body {
 .tall {
 	background-color: #325d88;
 	position:relative;
+	
 
 	
 	/*background: url(https://www.pixelstalk.net/wp-content/uploads/2016/08/Free-Download-Chalkboard-Pictures.jpg);
@@ -188,9 +189,10 @@ body {
 
 #hold {
 	color: white;
-	font-size: 36px;
+	font-size: 44px;
 	text-align: center;
 	margin-top: 0px;
+	z-index:2;
 
 }
 
