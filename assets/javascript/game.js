@@ -3,22 +3,26 @@ $(document).ready(function() {
 
     // Create Letter Selection 
 
-function createList(items, parent){
+function createList() {
+  var alphaList = document.getElementById('letters');
   var ul = document.createElement('ul');
-  parent.appendChild(ul);
-  items.forEach(function generateList(item) {
-    var li = document.createElement('li');
-    ul.appendChild(li);
-    if(Array.isArray(item)){
-      createList(item, li);
-    } else {
-      li.innerHTML = item;
+  alphaList.appendChild(ul);
+  
+    for(var i = 0; i <alphabet.length; i++) {
+      var listItem = alphabet[i];
+      var li = document.createElement('li'); 
+      ul.appendChild(li);     
+      li.textContent = listItem;
+      console.log(listItem);
+
     }
-  });
 }
 
+
+
+
 var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h','i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var list = document.getElementById('letters');
+var alphaList = document.getElementById('letters');
 var lives = 10;
 var letterGuess = [];
 var splitAnswer = [];
@@ -248,8 +252,7 @@ function hangman () {
 }
 
 // Builds the page for the first time
-
-createList(alphabet, list);
+createList();
 document.getElementById("myLives").innerHTML = lives;  
 document.getElementById("win").innerHTML = wins;  
 document.getElementById("loss").innerHTML = losses;  
@@ -331,32 +334,48 @@ var answer =  category[teamsGenerated[teamsGenerated.length-1]][0];
 
   // Create a new game but keep score 
       
-newGame.addEventListener('click', function(event){
+// newGame.addEventListener('click', function(event){
 
-    document.getElementById('popup').style.visibility = "hidden"; 
-    resetImage();
-    lives = 10;
-    document.getElementById("myLives").innerHTML = lives;  
-    btnHint.removeAttribute("class", "disabled");
-    btnHint.setAttribute("class", "btn-info");
-    letters.removeAttribute("class", "disabled");
-    hold.textContent = underScore;
+// window.location.href = `index.html?Wins=${keepWins}&Losses=${keepLosses}`
+
+
+
+//     // document.getElementById('popup').style.visibility = "hidden"; 
+//     // resetImage();
+//     // lives = 10;
+//     // document.getElementById("myLives").innerHTML = lives;  
+//     // btnHint.removeAttribute("class", "disabled");
+//     // btnHint.setAttribute("class", "btn-info");
+//     // letters.removeAttribute("class", "disabled");
+//     // hold.textContent = underScore;
+
+// });
+
+reset.addEventListener('click', function(event){
+  location.reload()
+
+
+
 
 });
+  
 
-// function resetGame() {
+// Got code from Tarik on StackOverflow
 
-
-// myLives.textContent = 0;  
-// win.textContent = 0;  
-// loss.textContent = 0;  
-
-// document.getElementById('popup').style.visibility = "hidden";
-
-
+// function getQueryVariable(variable) {
+//     var query = window.location.search.substring(1);
+//     var vars = query.split('&');
+//     for (var i = 0; i < vars.length; i++) {
+//         var pair = vars[i].split('=');
+//         if (decodeURIComponent(pair[0]) == variable) {
+//             return decodeURIComponent(pair[1]);
+//         }
+//     }
+//     console.log('Query variable %s not found', variable);
 // }
-      
 
+//     var keepWins = getQueryVariable("wins");
+//     var keepLosses = getQueryVariable("losses");
 
 });
 
